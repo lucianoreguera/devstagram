@@ -14,7 +14,9 @@ class ImageController extends Controller
 
         $imageName = Str::uuid().".".$image->extension();
 
-        $imageServer = Image::make($image);
+        // $imageServer = Image::make($image);
+        // Para notebook, si anda en el trabajo ya queda este nomas
+        $imageServer = Image::make(file_get_contents($image));
         $imageServer->fit(1000, 1000);
 
         $imagePath = public_path('uploads').'/'.$imageName;
